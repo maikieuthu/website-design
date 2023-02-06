@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset = "UTF-8" name = "viewport" content = "width=device-width, initial-scale=1" >
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Dancing+Script:wght@700&family=Lilita+One&family=Lobster&family=Pacifico&family=Passions+Conflict&family=Poppins&family=Roboto:wght@100;300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+<style>
+        
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0 auto;
+    }
+
+#header{
+    font-family: 'Lobster', cursive;
+    font-size: 70px;
+    color:rgb(53, 96, 44);
+    margin-left:500px; 
+}
+    
+    
+#bg-background{
+    background-color:#fff;
+    padding:10px;
+    border-radius:5px;
+    position: relative;
+}
+
+#product{
+    padding:5px;
+    clear:both;
+}
+
+#p_list{
+    width:200px;
+    max-width:200px;
+    height:260px;
+    padding:10px;
+    border:1px solid #000;
+    float:left;
+    margin:15px;
+    font-weight: bold;
+    }
+
+ #p_list img{
+    height:150px; 
+    width:150px;
+    text-align: center;
+       
+    }
+    
+.buttoncolor{
+    background-color: rgb(53, 96, 44);
+    font-size: 15px;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding:5px 15px;
+    margin-left:35px;
+}
+
+.col-4{
+    position: relative;
+}
+
+.panel{
+    position: absolute;
+    left:750px;
+    top:-30px;
+    width:30%;
+}
+
+h4, h5{
+    font-weight: bold;
+}
+
+th{
+    font-size:16px;
+}
+
+</style> 
+</head>
+<body ng-app="shoppingcart" ng-controller="shoppingCTR">
+    <div class="container" style="height:1000px;  padding:0;">
+        <header style="height:150px;">
+         <p id="p1">thebodyshop</p>
+       </header>
+    <div class="container">
+    <div class="row">
+        <div id = "bg-background" class="col-8">
+            <h4 >PRODUCTS > FACIAL PRODUCT<h4>
+                <hr style = "border-top:1px dotted #ccc;"/>
+            <div id = "product">
+                <div id = "p_list" ng-repeat = "product in products ">
+                    <span style="font-size:16px; margin-left:60px; ">{{product.p_name}}</span>
+                    <img ng-src = "{{product.p_image}}" style="margin-left:15px;margin-top:15px;">
+                    <div><label style="font-size:14px; padding-left:40px; ">Price: USD {{product.p_price}}</label></div>
+                    <button type = "button" class="buttoncolor" ng-click = "add_cart(product)"> Add to cart</button></center>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class = "panel">
+                <div class = "panel-heading">
+                    <h5 style="font-size:18px">MY CART</h5>
+                </div>
+                <div class = "panel-body table-responsive">
+                    <table class = "table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat = "cart in carts" ng-init = "setTotals(cart)">
+                                <td>{{cart.p_name}}</td>
+                                <td>USD {{cart.p_price}}</td>
+                                <td><button type = "button" ng-click = "remove_cart(cart)" class="btn btn-secondary"> X</button></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;">Total</td>
+                                <td>USD {{total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+<script src="./js/fp.js"></script>
+</body>   
+</html>
